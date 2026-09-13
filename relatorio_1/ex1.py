@@ -105,7 +105,9 @@ tabela = ax2.table(
 )
 
 # Questão e
-
+# c ~ 14,80 kg/s é o coeficiente de resistência do ar que faz o modelo bater com a velocidade medida (40 m/s aos 10s). 
+# Fisicamente, quanto maior o c, mais resistência o ar oferece, e menor é a velocidade do paraquedista
+# é esse efeito que o paraquedas maximiza
 
 plt.tight_layout() # ajusta o espaço do gráfico e da tabela automaticamente
 plt.show()

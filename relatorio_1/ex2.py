@@ -100,7 +100,9 @@ y_metros = resultado
 y_cm = y_metros * 100
 print(y_metros, y_cm)
 
-#
+# y ~ 1,57 m (157,18 cm) é a profundidade mínima de água necessária pro canal escoar 5,0 m³/s. 
+# Como é mais da metade da largura do canal (3,0 m), indica um canal relativamente profundo
+# na prática, ainda se somaria uma margem de segurança acima desse valor.
 
 plt.tight_layout()
 plt.show()
