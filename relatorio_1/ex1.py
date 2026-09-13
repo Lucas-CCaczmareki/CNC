@@ -7,14 +7,22 @@ import matplotlib.pyplot as plt
 def bissection(f, a, b, epsilon):
     k = 1
     historico = [] # lista vazia
+    x_anterior = None 
 
     # da pra botar limite de iteração com AND k < limite
     while (b - a) > epsilon: 
         # descobre o x
         x = (a + b) / 2 
 
+        # Calcula erro aproximado (exceto na 1a iteração)
+        if x_anterior is None:
+            erro_a = None
+        else:
+            erro_a = abs(x - x_anterior) / abs(x) * 100
+            erro_a = round(erro_a, 6) # faz o round aqui pra n usar round com None, q ai da erro
+
         #guarda os dados da iteração
-        historico.append([k, round(a, 4), round(b, 4), round(x, 4), round(f(x), 6)])
+        historico.append([k, round(a, 4), round(b, 4), round(x, 4), round(f(x), 6), erro_a])
 
         # avalia f(x) e multiplica por f(a)
         if (f(a)*f(x)) > 0:
@@ -24,8 +32,8 @@ def bissection(f, a, b, epsilon):
             # se f(a).f(x) < 0, então a raiz ta no intervalo [a, x] e não [a, b]
             b = x # ent atualiza o b
 
-        #conta quantas iterações o código teve
-        k = k + 1 
+        x_anterior = x # guarda pra calcular o erro relativo percentual
+        k = k + 1 #conta quantas iterações o código teve
 
     # print(k)
     # funciona pq python n tem escopo de bloco, ou seja, while, if, else e afins n criam um escopo novo
@@ -92,7 +100,7 @@ ax1.legend()
 ax2.axis('off')
 tabela = ax2.table(
     cellText=tabela_dados,
-    colLabels=["i", "cl", "cu", "cr", "f(cr)"],
+    colLabels=["i", "cl", "cu", "cr", "f(cr)", "εa (%)"],
     loc='center'
 )
 

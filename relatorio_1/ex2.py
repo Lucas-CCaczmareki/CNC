@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 def falsepos(f, a, b, epsilon1, epsilon2):
     k = 1
     historico = []
+    x_anterior = None
 
     # se o intervalo já é pequeno o suficiente, retorna o x
     if (b - a) < epsilon1: return (a*f(b) - b*f(a)) / (f(b) - f(a)), historico
@@ -22,8 +23,14 @@ def falsepos(f, a, b, epsilon1, epsilon2):
         # calcula o ponto em x que a reta secante corta
         x = (a*f(b) - b*f(a)) / (f(b) - f(a)) 
 
+        if x_anterior is None:
+            erro_a = None
+        else:
+            erro_a = abs(x - x_anterior) / abs(x) * 100
+            erro_a = round(erro_a, 6)
+
         # guarda dados pra resposta da letra c
-        historico.append([k, round(a, 4), round(b, 4), round(x, 4), round(f(x), 6)])
+        historico.append([k, round(a, 4), round(b, 4), round(x, 4), round(f(x), 6), erro_a])
 
         if abs(f(x)) < epsilon2: return x, historico
 
@@ -33,6 +40,7 @@ def falsepos(f, a, b, epsilon1, epsilon2):
             b = x # ent atualiza o b
         
         #conta quantas iterações o código teve
+        x_anterior = x
         k = k + 1 
 
     # print(k)
@@ -76,7 +84,7 @@ ax2.axis('off')
 # pode acabar dando problema nesse método por q ele pode retornar tabela_dados vazia. Mas pra esse caso específico ta de boa
 tabela = ax2.table(
     cellText = tabela_dados,
-    colLabels = ["i", "yl", "yu", "cr", "f(cr)"],
+    colLabels = ["i", "yl", "yu", "cr", "f(cr)", "εa (%)"],
     loc = 'center'
 )
 
