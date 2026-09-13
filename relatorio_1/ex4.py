@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 # epsilon1: quão próximo de zero o valor da função já tá. |f(x)|
 # epsilon2: distância entre a nova aproximação e a anterior. |x - xi|
-def secant(x0, x1, epsilon1, epsilon2):
+def secant(f, x0, x1, epsilon1, epsilon2):
 
     # inicia as iterações
     k = 1
@@ -76,7 +76,7 @@ vt = 25.85 * 10**(-3)
 Id_vals = sat_i * (np.exp(vd_vals/(n*vt)) - 1)
 Ir_vals = (vs - vd_vals) / r
 
-resultado, tabela_dados = secant(0.95, 1.00, 0.001, 0.001)
+resultado, tabela_dados = secant(f, 0.95, 1.00, 0.001, 0.001)
 print(resultado)
 
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(8, 14))
