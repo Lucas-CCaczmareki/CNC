@@ -49,7 +49,9 @@ def regress(x, y):
 
     # se todos os x forem iguais, a reta é vertical e n dá pra escrever como y = a0 + a1 x
     den = n * sumx2 - sumx * sumx
-    if den == 0:
+
+    # compara os x direto, pq o den em float n dá 0 exato (ex: x = 0.7 sai ~1e-16)
+    if np.all(x == x[0]):
         print("todos os x são iguais, n existe reta de regressão")
         return np.nan, np.nan, np.nan, np.nan, 1
 

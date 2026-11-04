@@ -1,8 +1,10 @@
 ## implementação do polinômio interpolador de Lagrange (fig 18.11 do chapra)
 
-# mesmo objetivo do newton: dados n+1 pontos (x_i, y_i), estimar o valor da função num x que n tá na tabela
+# mesmo objetivo do newton: dados n+1 pontos (x_i, y_i), estimar o valor da função num x que não tá na tabela
 # a diferença é a forma de montar o polinômio. Aqui n tem tabela de diferenças divididas, cada ponto vira uma "parcela":
+
 # p_n(x) = soma de y_i * L_i(x), onde L_i(x) = produto de (x - x_j)/(x_i - x_j), com j != i
+
 # o L_i(x) é o polinômio de Lagrange (ou função base). Ele vale 1 em x = x_i e 0 em todos os outros x_j
 # então cada parcela "liga" só o seu ponto, e a soma passa por todos eles
 
