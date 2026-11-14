@@ -93,6 +93,7 @@ print("r2 =", r2)
 print("r =", np.sign(a1) * np.sqrt(r2)) # coeficiente de correlação, com o sinal de a1
 print("info =", info)
 
+
 # confere com a lib
 print("\n(a1, a0) (np.polyfit) =", np.polyfit(x, y, 1))
 print("r2 (np.corrcoef) =", np.corrcoef(x, y)[0, 1] ** 2)
